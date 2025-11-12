@@ -20,27 +20,31 @@ Build a robust machine learning model that accurately predicts bankruptcy and id
 
 To consider this project successful, the following outcomes should be achieved:
 
-1. **Model Performance**
-   - ROC-AUC > TBD (e.g., 0.85 or higher)
-   - F1-score > TBD (e.g., 0.70 or higher)
-   - Use appropriate metrics for imbalanced classification
+1. **Model Performance Success Criteria**
 
-2. **Feature Insights**
+| Metric     | Competitive Threshold | Ideal Target |
+|------------|-----------------------|--------------|
+| F1-score   | >= 0.60               | >= 0.70      |
+| Recall     | >= 0.70               | >= 0.80      |
+| Precision  | >= 0.60               | >= 0.75      |
+| ROC AUC    | >= 0.95               | >= 0.97      |
+
+3. **Feature Insights**
    - Identify and explain key financial features using SHAP or feature importance
 
-3. **Reproducible Pipeline**
+4. **Reproducible Pipeline**
    - Documented ML pipeline covering preprocessing, modeling, evaluation, and interpretation
 
-4. **Collaborative Repository**
+5. **Collaborative Repository**
    - Version-controlled GitHub repo with issue tracking and clear structure
 
-5. **User-Friendly Documentation**
+6. **User-Friendly Documentation**
    - Comprehensive README with project overview, dataset summary, modeling approach, and usage instructions
 
-6. **Optional Deployment Interface**
+7. **Optional Deployment Interface**
    - CLI, notebook, or dashboard for real-time predictions (if time permits)
 
-7. **Accessibility**
+8. **Accessibility**
    - Clear setup and execution instructions for users to run the model and generate predictions
 
 ---
