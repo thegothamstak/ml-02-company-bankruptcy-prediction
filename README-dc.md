@@ -96,7 +96,9 @@ project-root
 ## Installation Instructions (Coming Soon)
 
 This section will include steps to:
-- Set up the project environment  
+- Set up the project environment
+   - On MacOS or Linux run the following command to create the project directory structure
+      - mkdir -p data/raw data/processed data/final reports models src experiments
 - Install required dependencies  
 - Configure paths and settings  
 
