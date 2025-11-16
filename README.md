@@ -97,27 +97,190 @@ project-root
 
 ---
 
-## Installation Instructions (Coming Soon)
+## Installation Instructions
 
-This section will include steps to:
-- Set up the project environment
-   - On MacOS or Linux run the following command to create the project directory structure
-      - mkdir -p data/raw data/processed data/final reports models src experiments
-- Install required dependencies  
-- Configure paths and settings  
+Follow these steps to set up the project environment and install dependencies.
 
-Expected update: Once model training scripts and configuration files are finalized.
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/thegothamstak/ml-02-company-bankruptcy-prediction.git
+cd ml-02-company-bankruptcy-prediction
+```
+
+### 2. Create Directory Structure
+
+Run the following command to create the required directories (on macOS/Linux/Windows):
+```bash
+mkdir -p data/raw data/processed data/final reports models src experiments
+```
+
+### 3. Set Up Environment Variables
+
+Create a .env file in the project root with the following paths (adjust as needed):
+```
+DATA_RAW=./data/raw
+DATA_PROCESSED=./data/processed
+DATA_FINAL=./data/final
+MODELS_DIR=./models
+REPORTS_DIR=./reports
+SRC_DIR=./src
+EXPERIMENTS_DIR=./experiments
+```
+
+Install python-dotenv to load these variables:
+```bash
+pip install python-dotenv
+```
+
+### 4. Create a Virtual Environment
+
+Use Python 3.9+ (as per the notebook's kernel).
+```bash
+python -m venv env
+source env/bin/activate  # On macOS/Linux
+# Or on Windows: env\Scripts\activate
+```
+
+### 5. Install Dependencies
+
+Install the required packages using pip. You can run requirements.txt file and run pip install -r requirements.txt.
+```
+imbalanced-learn
+joblib
+jupyter
+keras
+matplotlib
+numpy
+pandas
+python-dotenv
+scikit-learn
+scipy
+seaborn
+tensorflow
+tqdm
+xgboost
+```
+
+### 6. Download the Dataset
+
+- Download data.csv from [Kaggle](https://www.kaggle.com/datasets/fedesoriano/company-bankruptcy-prediction).
+- Place it in data/raw/data.csv.
 
 ---
 
 ## Usage Guide (Coming Soon)
 
-This section will provide instructions to:
-- Train and evaluate the model  
-- Run predictions on new data  
-- Visualize feature importance and model metrics  
+### 1. Running the Complete Pipeline
 
-Expected update: After model source code and CLI/notebook interfaces are implemented.
+Open the notebook:
+```bash
+jupyter notebook BankruptcyML.ipynb
+```
+Then execute cells in order — the pipeline is sequential.
+
+### 2. Data Loading
+
+The notebook automatically loads the raw dataset from:
+```bash
+raw_dir = os.getenv("DATA_RAW")
+df = pd.read_csv(os.path.join(raw_dir, "your_filename.csv"))
+```
+To use a different file, replace the filename in the notebook or drop it into the data/raw/ folder with the same name.
+
+### 3. Data Preprocessing
+
+The notebook automatically handles:
+
+#### Feature scaling
+Using :
+```bash
+StandardScaler()
+```
+
+#### Class imbalance
+Using :
+```bash
+SMOTE(random_state=42)
+```
+
+#### Train-test split
+Default 80/20 split.
+
+No manual action required — just run the notebook cells.
+
+### 4. Training the Neural Network Model
+
+The notebook trains a Sequential MLP model, with:
+- Dense(64)
+- Dense(32)
+- Dropout
+- BatchNormalization
+- Binary output layer
+
+This step runs automatically when you execute the Model Training section of the notebook.
+
+The model is saved as:
+```bash
+models/bankruptcy_model.pkl
+```
+
+### 5. Training the Neural Network Model
+
+The notebook includes a prediction function like:
+```bash
+model.predict(new_data_scaled)
+```
+
+To run predictions:
+1. Place new financial ratio data in a CSV file
+2. Apply the same preprocessing steps (scaler + selected features)
+3. Use the loaded model to generate predictions
+
+You may update the notebook to accept a CSV path and output predictions into:
+```bash
+data/final/predictions.csv
+```
+
+### 6. Evaluating the Model
+
+The notebook automatically computes:
+- Precision
+- Recall
+- F1-score
+- ROC-AUC
+- Confusion Matrix
+- Precision-Recall curve
+
+All evaluation plots are generated and visible inside the notebook.
+
+### 7. Feature Importance & SHAP Analysis
+
+Your notebook loads SHAP and generates:
+- Summary plot
+- Beeswarm plot
+
+To regenerate:
+```bash
+explainer = shap.KernelExplainer(model.predict, X_sample)
+shap_values = explainer.shap_values(X_test)
+shap.summary_plot(shap_values, X_test)
+```
+
+SHAP results help explain which financial ratios contribute most to bankruptcy predictions.
+
+### 8. Saving & Loading Models
+
+The notebook saves trained models to:
+```bash
+models/
+```
+
+You can reload the model as:
+```bash
+import joblib
+model = joblib.load("models/bankruptcy_model.pkl")
+```
 
 ---
 
@@ -175,10 +338,10 @@ Expected update: After model source code and CLI/notebook interfaces are impleme
 
 ## Future Work
 
-- Temporal modeling for early warning  
-- Ensemble models combining tree-based and neural nets  
-- Zero-shot risk scoring using financial text embeddings  
-- Expand dataset to include other East Asian countries  
+- Add Explainability (SHAP) to show why a company is predicted as risky
+- Shift from binary label → risk probability bands (Low / Medium / High)
+- Expand dataset with more years or external economic indicators
+- Develop a stakeholder dashboard for decision-making
 
 ---
 
