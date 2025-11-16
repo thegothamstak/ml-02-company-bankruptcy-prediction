@@ -1,0 +1,14 @@
+imbalanced-learn
+joblib
+jupyter
+keras
+matplotlib
+numpy
+pandas
+python-dotenv
+scikit-learn
+scipy
+seaborn
+tensorflow
+tqdm
+xgboost
