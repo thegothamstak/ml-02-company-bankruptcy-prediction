@@ -351,3 +351,19 @@ model = joblib.load("models/bankruptcy_model.pkl")
 - Doren Chan
 - Oshinee Mendis
 - Shripad Tak
+
+---
+
+## Video links
+
+- Bakary Sanogo
+https://drive.google.com/file/d/1j_hJ0z0-NDSiyfh4GAezYrdVhBdBzMki/view?usp=drive_link
+
+- Doren Chan
+https://drive.google.com/file/d/1hgYuVI3_iTWpyKcyIYAI-axEb5SVntrm/view?usp=sharing
+
+- Oshinee Mendis
+https://drive.google.com/drive/folders/1UxK-7ZkIXTyFYdYGV4Ld_39qgdlDIqt2?usp=sharing
+
+- Shripad Tak
+https://drive.google.com/drive/folders/1S4hyG_nD3p53pIgwYjS7TEHRM9RkaXSj
